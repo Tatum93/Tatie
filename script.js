@@ -14,9 +14,9 @@ function checkPassword() {
 
 // Fetch Images and Anecdotes
 const images = [
-  "images/dog1.jpg",  // Replace with your image filenames
-  "images/dog2.jpg",
-  "images/dog3.jpg"
+  "images/test1.jpg",  // Replace with your image filenames
+  "images/test2.jpg",
+  "images/download.jpg"
 ];
 
 let anecdotes = [];
