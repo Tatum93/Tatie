@@ -18,22 +18,29 @@ header h1 {
   margin-bottom: 20px;
 }
 
+
+
+/* Container to control layout */
 #image-container {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center;     /* Centers vertically (if needed) */
+  max-width: 100%;         /* Prevents overflow on larger screens */
+  padding: 10px;           /* Adds spacing around the image */
+  box-sizing: border-box;  /* Ensures padding doesn’t cause overflow */
 }
 
-
-
+/* Image itself */
 #dog-image {
-  max-width: 100%;  /* Prevents the image from overflowing its container */
-  height: auto;     /* Maintains aspect ratio */
-  max-height: 500px; /* Limits height for better display */
-  display: block;
-  margin: 0 auto;    /* Centers the image */
-  border-radius: 10px; /* Optional rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 80%;          /* Scales image to fit 80% of screen width */
+  max-height: 400px;       /* Limits the height to 400px */
+  height: auto;            /* Maintains aspect ratio */
+  width: auto;             /* Prevents distortion */
+  object-fit: contain;     /* Ensures the full image is visible */
+  border-radius: 10px;     /* Optional: adds rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for effect */
 }
+
 
 #anecdote {
   text-align: center;
