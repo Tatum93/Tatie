@@ -23,10 +23,15 @@ header h1 {
   justify-content: center;
 }
 
+
+
 #dog-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+  max-width: 100%;  /* Prevents the image from overflowing its container */
+  height: auto;     /* Maintains aspect ratio */
+  max-height: 500px; /* Limits height for better display */
+  display: block;
+  margin: 0 auto;    /* Centers the image */
+  border-radius: 10px; /* Optional rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
