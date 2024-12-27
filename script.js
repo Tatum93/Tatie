@@ -46,7 +46,7 @@ const memories = [
   { image: "https://i.imgur.com/s9wQY34.jpg", anecdote: "lol this pose always makes for the cutest pics… only problem is he looks so cute I always feel stuck cus I don’t want to move lol." },
   { image: "https://i.imgur.com/qKSSs9q.jpg", anecdote: "She found her favorite stick that day." },
   { image: "https://i.imgur.com/WITsc8w.jpg", anecdote: "one of tatie cutest" },
-  { image: "https://i.imgur.com/Yu4uSsj.jpg", anecdote: "Ready to greet everyone with a smile." },
+  { image: "https://i.imgur.com/Yu4uSsj.jpg", anecdote: "the cutest lil 1 yr old scabo" },
   { image: "https://i.imgur.com/0qLYvzI.jpg", anecdote: "reunited with monkoo after Hawaii" },
   { image: "https://i.imgur.com/iPOgLO2.jpg", anecdote: "Her first snowfall experience!" },
   { image: "https://i.imgur.com/OKfksI5.jpg", anecdote: "Chasing her tail for fun." },
