@@ -1,4 +1,4 @@
-const PASSWORD = "waverly"; // Change this password to whatever you want
+const PASSWORD = "44"; // Change this password to whatever you want
 
 // Password Protection
 function checkPassword() {
