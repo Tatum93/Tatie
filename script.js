@@ -14,8 +14,6 @@ function checkPassword() {
 
 // Image and Anecdote Pairs
 const memories = [
-
-
   { image: "https://i.imgur.com/UI0bqHh.jpg", anecdote: "Our first pic with our monkoo :)." },
   { image: "https://i.imgur.com/NoxyD95.jpg", anecdote: "Her first time exploring the outdoors." },
   { image: "https://i.imgur.com/xZpkvW2.jpg", anecdote: "That day she found her favorite toy!" },
@@ -42,30 +40,17 @@ const memories = [
   { image: "https://i.imgur.com/aGDjbcL.jpg", anecdote: "A moment of calm after a busy day." },
   { image: "https://i.imgur.com/aqRhIvu.jpg", anecdote: "he always looks the cutest when he’s MIs lol" },
   { image: "https://i.imgur.com/5mYlLQI.jpg", anecdote: "Curious about everything around her." },
-  { image: "https://i.imgur.com/uz0xBh0.jpg", anecdote: "lol poor mooku feels betrayed " },
+  { image: "https://i.imgur.com/uz0xBh0.jpg", anecdote: "lol poor mooku feels betrayed" },
   { image: "https://i.imgur.com/ecymWIn.jpg", anecdote: "homeowner tatie!." },
-  { image: "https://i.imgur.com/YhUVnO5.jpg", anecdote: "lol can’t believe we believed this dunce when her and her 12 yr old coworker claimed to have gotten multiple dogs from pet express haha " },
-  { image: "https://i.imgur.com/s9wQY34.jpg", anecdote: “lol this pose always makes for the cutest pics… only problem is he looks so cute I always feel stuck cus I don’t want to move lol." },
+  { image: "https://i.imgur.com/YhUVnO5.jpg", anecdote: "lol can’t believe we believed this dunce when her and her 12 yr old coworker claimed to have gotten multiple dogs from pet express haha" },
+  { image: "https://i.imgur.com/s9wQY34.jpg", anecdote: "lol this pose always makes for the cutest pics… only problem is he looks so cute I always feel stuck cus I don’t want to move lol." },
   { image: "https://i.imgur.com/qKSSs9q.jpg", anecdote: "She found her favorite stick that day." },
-  { image: "https://i.imgur.com/WITsc8w.jpg", anecdote: "one of tatie cutest " },
+  { image: "https://i.imgur.com/WITsc8w.jpg", anecdote: "one of tatie cutest" },
   { image: "https://i.imgur.com/Yu4uSsj.jpg", anecdote: "Ready to greet everyone with a smile." },
-  { image: "https://i.imgur.com/0qLYvzI.jpg", anecdote: "reunited with monkoo after Hawaii " },
+  { image: "https://i.imgur.com/0qLYvzI.jpg", anecdote: "reunited with monkoo after Hawaii" },
   { image: "https://i.imgur.com/iPOgLO2.jpg", anecdote: "Her first snowfall experience!" },
   { image: "https://i.imgur.com/OKfksI5.jpg", anecdote: "Chasing her tail for fun." },
-  { image: "https://i.imgur.com/a2OjlkK.jpg", anecdote: "That one time she got into the flowers." },
-  { image: "https://i.imgur.com/xPtKnKZ.jpg", anecdote: "Always on an adventure." },
-  { image: "https://i.imgur.com/63ycNvO.jpg", anecdote: "Proud of her new toy." },
-  { image: "https://i.imgur.com/3eWfotB.jpg", anecdote: "That peaceful nap after playing." },
-  { image: "https://i.imgur.com/1R2kFw2.jpg", anecdote: "The happiest dog on a walk." },
-  { image: "https://i.imgur.com/7AKGBbx.jpg", anecdote: "Johnson trying to bond with tatie shortly after Kai attempted to eat/pipe him…tatie is skeptical tho. Too little too late Johnny!" },
-  { image: "https://i.imgur.com/3ByrvLA.jpg", anecdote: "Her favorite cozy spot." },
-  { image: "https://i.imgur.com/qCyJnt3.jpg", anecdote: "That day she barked at the vacuum." },
-  { image: "https://i.imgur.com/s7LxYYh.jpg", anecdote: "Adventurous as always." },
-  { image: "https://i.imgur.com/rI0TGAW.jpg", anecdote: "Always ready for the next big thing." },
-  { image: "https://i.imgur.com/6cu3plw.jpg", anecdote: "tatie potatoe 🥰" },
-  { image: "https://i.imgur.com/8am7oTM.jpg", anecdote: "Birthday Tatie!!" },
-  { image: "https://i.imgur.com/Ozvu7nq.jpg", anecdote: "watching these 2 play with tatie is one of my absolute favorite things in the world ." },
-  { image: "https://i.imgur.com/8jvbohF.jpg", anecdote: "9/12/23 - tatie had just gotten shaved down and we took a nice walk across that sketchy overpass lol. Also Kinna’s bitch ass friend K Rao responded to my story saying “omg this ugly dog is taking over your life haha”….dude sucks. He’s probably just mad that him and his wife are ugly as shit!! " }
+  { image: "https://i.imgur.com/Ozvu7nq.jpg", anecdote: "watching these 2 play with tatie is one of my absolute favorite things in the world." }
 ];
 
 // Random Memory Function
