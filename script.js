@@ -14,7 +14,7 @@ function checkPassword() {
 
 // Image and Anecdote Pairs
 const memories = [
-  { image: "https://i.imgur.com/UI0bqHh.jpg", anecdote: "A special memory with your dog." },
+  { image: "https://i.imgur.com/UI0bqHh.jpg", anecdote: "Our first pic with our monkoo :)." },
   { image: "https://i.imgur.com/NoxyD95.jpg", anecdote: "Her first time exploring the outdoors." },
   { image: "https://i.imgur.com/xZpkvW2.jpg", anecdote: "That day she found her favorite toy!" },
   { image: "https://i.imgur.com/aTPupbn.jpg", anecdote: "Look at that guilty face!" },
