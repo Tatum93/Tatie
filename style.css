@@ -32,8 +32,8 @@ header h1 {
 
 /* Image itself */
 #dog-image {
-  max-width: 80%;          /* Scales image to fit 80% of screen width */
-  max-height: 400px;       /* Limits the height to 400px */
+  max-width: 50%;          /* Scales image to fit 80% of screen width */
+  max-height: 200px;       /* Limits the height to 400px */
   height: auto;            /* Maintains aspect ratio */
   width: auto;             /* Prevents distortion */
   object-fit: contain;     /* Ensures the full image is visible */
