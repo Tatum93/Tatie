@@ -17,7 +17,7 @@ function checkPassword() {
 
 const memories = [
   { image: "https://i.imgur.com/UI0bqHh.jpg", anecdote: "Our first pic with our monkoo :)." },
-  { image: "https://i.imgur.com/NoxyD95.jpg", anecdote: “    “ },
+  { image: "https://i.imgur.com/NoxyD95.jpg", anecdote:  ""},
   { image: "https://i.imgur.com/xZpkvW2.jpg", anecdote: "" },
   { image: "https://i.imgur.com/aTPupbn.jpg", anecdote: "His Eyes!!! " },
   { image: "https://i.imgur.com/nVJrO3m.jpg", anecdote: "" },
@@ -52,7 +52,7 @@ const memories = [
   { image: "https://i.imgur.com/0qLYvzI.jpg", anecdote: "reunited with monkoo after Hawaii" },
   { image: "https://i.imgur.com/iPOgLO2.jpg", anecdote: "Dobby the house elf at speedway" },
   { image: "https://i.imgur.com/OKfksI5.jpg", anecdote: "July 4, 2023 - monkoo’s first fun day at the beach" },
-image: "https://i.imgur.com/Ozvu7nq.jpg", anecdote: "watching these 2 play with tatie is one of my absolute favorite things in the world." }
+  { image: "https://i.imgur.com/Ozvu7nq.jpg", anecdote: "watching these 2 play with tatie is one of my absolute favorite things in the world." }
 ];
 
 // Random Memory Function
