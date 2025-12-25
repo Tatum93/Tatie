@@ -1,3 +1,6 @@
+let yirEntries = [];
+let yirIndex = 0;
+
 function escapeHtml(str) {
   return String(str ?? "")
     .replaceAll("&", "&amp;")
@@ -9,18 +12,38 @@ function escapeHtml(str) {
 
 function formatDateLabel(isoDate) {
   if (!isoDate) return "";
-  // Force midnight to avoid timezone shifting the date
   const d = new Date(`${isoDate}T00:00:00`);
-  if (Number.isNaN(d.getTime())) return isoDate; // fallback if malformed
+  if (Number.isNaN(d.getTime())) return isoDate;
   return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 }
 
-function renderEntry(entry) {
+function renderCurrent() {
+  const card = document.getElementById("yir-card");
+  const progress = document.getElementById("yir-progress");
+  const prevBtn = document.getElementById("yir-prev-btn");
+  const nextBtn = document.getElementById("yir-next-btn");
+
+  if (!card || !progress || !prevBtn || !nextBtn) return;
+
+  if (!yirEntries.length) {
+    card.innerHTML = "<p style='text-align:center;'>No memories yet.</p>";
+    progress.textContent = "";
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  // Clamp index
+  yirIndex = Math.max(0, Math.min(yirIndex, yirEntries.length - 1));
+
+  const entry = yirEntries[yirIndex];
   const dateLabel = formatDateLabel(entry.date);
 
-  return `
-    <section style="margin: 26px 0; padding-bottom: 18px; border-bottom: 1px solid #ddd;">
-      <div style="font-size: 0.95em; opacity: 0.7; margin-bottom: 8px;">
+  progress.textContent = `${yirIndex + 1} / ${yirEntries.length}`;
+
+  card.innerHTML = `
+    <section style="margin: 16px 0; padding-bottom: 8px;">
+      <div style="font-size: 0.95em; opacity: 0.7; margin-bottom: 10px; text-align:center;">
         ${escapeHtml(dateLabel)}
       </div>
 
@@ -33,27 +56,67 @@ function renderEntry(entry) {
       </div>
 
       <p style="text-align:center; margin-top: 14px; font-size: 1.2em; line-height: 1.4; padding: 0 10px;">
-        ${escapeHtml(entry.caption)}
+        ${escapeHtml(entry.caption || "")}
       </p>
     </section>
   `;
+
+  prevBtn.disabled = (yirIndex === 0);
+  nextBtn.disabled = (yirIndex === yirEntries.length - 1);
 }
 
-// This is called automatically after password unlock (via script.js)
-window.initYearInReview = async function initYearInReview() {
-  const container = document.getElementById("yir-container");
-  if (!container) return;
+function wireControls() {
+  const prevBtn = document.getElementById("yir-prev-btn");
+  const nextBtn = document.getElementById("yir-next-btn");
 
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      yirIndex -= 1;
+      renderCurrent();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      yirIndex += 1;
+      renderCurrent();
+    });
+  }
+
+  // Optional keyboard support: left/right arrows
+  document.addEventListener("keydown", (e) => {
+    if (!yirEntries.length) return;
+
+    if (e.key === "ArrowLeft" && yirIndex > 0) {
+      yirIndex -= 1;
+      renderCurrent();
+    }
+    if (e.key === "ArrowRight" && yirIndex < yirEntries.length - 1) {
+      yirIndex += 1;
+      renderCurrent();
+    }
+  });
+}
+
+// Called after password unlock by script.js
+window.initYearInReview = async function initYearInReview() {
   try {
     const res = await fetch("./2025.json", { cache: "no-store" });
     const entries = await res.json();
 
+    // Chronological sort
     entries.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
 
-    container.innerHTML = entries.map(renderEntry).join("");
+    yirEntries = entries;
+    yirIndex = 0;
+
+    wireControls();
+    renderCurrent();
   } catch (e) {
     console.error("Failed to load 2025.json", e);
-    container.innerHTML =
-      "<p style='text-align:center;'>Couldn’t load 2025.json — check formatting and file path.</p>";
+    const card = document.getElementById("yir-card");
+    if (card) {
+      card.innerHTML = "<p style='text-align:center;'>Couldn’t load 2025.json — check formatting.</p>";
+    }
   }
 };
