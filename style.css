@@ -1,81 +1,36 @@
+/* Base layout */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   background-color: #f9f9f9;
+  color: #111;
 }
 
 .hidden {
   display: none;
 }
 
-header h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Container to control layout */
-#image-container {
+/* Password screen full-page centering */
+.screen {
+  min-height: 100vh;
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically */
-  width: 100%;             /* Full width of the screen */
-  height: 70vh;            /* Takes up 70% of screen height */
-  padding: 10px;
-  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Image itself */
-#dog-image {
-  max-width: 90%;          /* Up to 90% of the screen width */
-  max-height: 90%;         /* Up to 90% of the container height */
-  height: auto;            /* Maintain aspect ratio */
-  width: auto;             /* Maintain aspect ratio */
-  border-radius: 10px;     /* Optional rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for effect */
-}
-
-/* Anecdote text */
-#anecdote {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 1.5em; /* Slightly larger font for better readability */
-  padding: 0 20px;
-}
-
-/* Button style */
-#new-anecdote-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#new-anecdote-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Password box */
 .password-box {
   text-align: center;
   background: #fff;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  width: min(420px, 92vw);
 }
 
 /* Input and Button styling */
 input {
+  width: min(320px, 80vw);
   padding: 10px;
   font-size: 16px;
   margin-top: 10px;
@@ -89,7 +44,71 @@ button {
 }
 
 /* Error message style */
-#error-message {
+#error-message,
+.error {
   color: red;
   margin-top: 10px;
+  text-align: center;
+}
+
+/* Header */
+.header h1 {
+  text-align: center;
+  margin: 24px 0 10px;
+}
+
+/* Main content container */
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+/* Progress */
+.progress {
+  text-align: center;
+  opacity: 0.75;
+  margin: 12px 0;
+}
+
+/* Card content */
+.card {
+  margin: 16px 0;
+}
+
+.yir-date {
+  font-size: 0.95em;
+  opacity: 0.7;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.yir-image-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.yir-image {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.yir-caption {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 1.2em;
+  line-height: 1.4;
+  padding: 0 10px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
 }
