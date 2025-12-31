@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dog Memories</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>2025 Year in Review</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="password-screen">
     <div class="password-box">
       <h2>Enter Password</h2>
-      <input type="password" id="password-input" placeholder="Password">
+      <input type="password" id="password-input" placeholder="Password" />
       <button onclick="checkPassword()">Enter</button>
       <p id="error-message"></p>
     </div>
@@ -18,21 +19,23 @@
 
   <div id="content" class="hidden">
     <header>
-      <h1>Memories with Tatie</h1>
+      <h1>2025 Year in Review</h1>
     </header>
-   <main>
-  <div id="image-container">
-    <img id="dog-image" alt="Dog Photo">
-  </div>
-  <p id="anecdote"></p>
-  <button id="new-anecdote-btn">Show Another Memory</button>
 
-  <div class="links" style="text-align:center; margin-top:10px;">
-    <a href="2025.html">2025 Year in Review →</a>
+    <main style="max-width: 900px; margin: 0 auto; padding: 0 16px 40px;">
+      <div id="yir-progress" style="text-align:center; opacity:0.75; margin: 12px 0;"></div>
+
+      <div id="yir-card">
+        <!-- Rendered by script.js -->
+      </div>
+
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:18px;">
+        <button id="yir-prev-btn" type="button">← Back</button>
+        <button id="yir-next-btn" type="button">Next →</button>
+      </div>
+    </main>
   </div>
-</main>
-  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
