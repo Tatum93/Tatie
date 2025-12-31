@@ -8,31 +8,35 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="password-screen">
+  <!-- Password Screen -->
+  <div id="password-screen" class="screen">
     <div class="password-box">
       <h2>Enter Password</h2>
       <input type="password" id="password-input" placeholder="Password" />
-      <button onclick="checkPassword()">Enter</button>
+      <button id="password-btn" type="button">Enter</button>
       <p id="error-message"></p>
     </div>
   </div>
 
+  <!-- Content -->
   <div id="content" class="hidden">
-    <header>
+    <header class="header">
       <h1>2025 Year in Review</h1>
     </header>
 
-    <main style="max-width: 900px; margin: 0 auto; padding: 0 16px 40px;">
-      <div id="yir-progress" style="text-align:center; opacity:0.75; margin: 12px 0;"></div>
+    <main class="main">
+      <div id="yir-progress" class="progress"></div>
 
-      <div id="yir-card">
+      <div id="yir-card" class="card">
         <!-- Rendered by script.js -->
       </div>
 
-      <div style="display:flex; justify-content:center; gap:12px; margin-top:18px;">
+      <div class="controls">
         <button id="yir-prev-btn" type="button">← Back</button>
         <button id="yir-next-btn" type="button">Next →</button>
       </div>
+
+      <p id="yir-error" class="error"></p>
     </main>
   </div>
 
