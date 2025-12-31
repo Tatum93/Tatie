@@ -1,4 +1,4 @@
-const PASSWORD = "44"; // Change this password to whatever you want
+const PASSWORD = "44"; // change if you want
 
 let yirEntries = [];
 let yirIndex = 0;
@@ -14,10 +14,43 @@ function escapeHtml(str) {
 
 function formatDateLabel(isoDate) {
   if (!isoDate) return "";
-  // Use midnight to avoid timezone shifting the day
   const d = new Date(`${isoDate}T00:00:00`);
   if (Number.isNaN(d.getTime())) return isoDate;
   return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
+
+/**
+ * If an image fails to load (404 due to extension case mismatch etc),
+ * try a small set of common extension/case variants.
+ */
+function buildFallbackCandidates(src) {
+  const candidates = [];
+  const lower = src.toLowerCase();
+
+  // If it already ends with a known extension, swap to variants
+  const exts = [".jpeg", ".jpg", ".png"];
+  const variants = [
+    ".jpeg", ".JPEG",
+    ".jpg", ".JPG",
+    ".png", ".PNG"
+  ];
+
+  const found = exts.find(ext => lower.endsWith(ext));
+  if (found) {
+    const base = src.slice(0, -found.length);
+    for (const v of variants) candidates.push(base + v);
+  } else {
+    // No extension? (unlikely) try appending
+    for (const v of variants) candidates.push(src + v);
+  }
+
+  // Remove duplicates while preserving order
+  return [...new Set(candidates)];
+}
+
+function setError(msg) {
+  const el = document.getElementById("yir-error");
+  if (el) el.textContent = msg || "";
 }
 
 function renderCurrent() {
@@ -27,6 +60,8 @@ function renderCurrent() {
   const nextBtn = document.getElementById("yir-next-btn");
 
   if (!card || !progress || !prevBtn || !nextBtn) return;
+
+  setError("");
 
   if (!yirEntries.length) {
     card.innerHTML = "<p style='text-align:center;'>No memories yet.</p>";
@@ -41,25 +76,33 @@ function renderCurrent() {
 
   progress.textContent = `${yirIndex + 1} / ${yirEntries.length}`;
 
+  const dateLabel = escapeHtml(formatDateLabel(entry.date));
+  const caption = escapeHtml(entry.caption || "");
+  const src = entry.image || "";
+
+  // Render with an onerror fallback handler
   card.innerHTML = `
-    <section style="margin: 16px 0; padding-bottom: 8px;">
-      <div style="font-size: 0.95em; opacity: 0.7; margin-bottom: 10px; text-align:center;">
-        ${escapeHtml(formatDateLabel(entry.date))}
-      </div>
-
-      <div style="margin: 10px 0;">
-        <img
-          src="${escapeHtml(entry.image)}"
-          alt=""
-          style="width:100%; max-width:900px; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"
-        />
-      </div>
-
-      <p style="text-align:center; margin-top: 14px; font-size: 1.2em; line-height: 1.4; padding: 0 10px;">
-        ${escapeHtml(entry.caption || "")}
-      </p>
-    </section>
+    <div class="yir-date">${dateLabel}</div>
+    <div class="yir-image-wrap">
+      <img id="yir-img" class="yir-image" src="${escapeHtml(src)}" alt="" />
+    </div>
+    <p class="yir-caption">${caption}</p>
   `;
+
+  const img = document.getElementById("yir-img");
+  if (img) {
+    const candidates = buildFallbackCandidates(src);
+    let attempt = 0;
+
+    img.onerror = () => {
+      attempt += 1;
+      if (attempt >= candidates.length) {
+        setError(`Could not load image: ${src}`);
+        return;
+      }
+      img.src = candidates[attempt];
+    };
+  }
 
   prevBtn.disabled = (yirIndex === 0);
   nextBtn.disabled = (yirIndex === yirEntries.length - 1);
@@ -83,7 +126,6 @@ function wireControls() {
     });
   }
 
-  // Optional keyboard support
   document.addEventListener("keydown", (e) => {
     if (!yirEntries.length) return;
 
@@ -100,9 +142,13 @@ function wireControls() {
 async function initYearInReview() {
   try {
     const res = await fetch("./2025.json", { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Failed to fetch 2025.json: ${res.status} ${res.statusText}`);
+    }
+
     const entries = await res.json();
 
-    // Sort by date (so filenames like 1.3.jpeg don't matter)
+    // Sort by date; filenames like 1.3.jpeg are fine
     entries.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
 
     yirEntries = entries;
@@ -111,13 +157,12 @@ async function initYearInReview() {
     wireControls();
     renderCurrent();
   } catch (e) {
-    console.error("Failed to load 2025.json", e);
-    const card = document.getElementById("yir-card");
-    if (card) card.innerHTML = "<p style='text-align:center;'>Couldn’t load 2025.json — check formatting.</p>";
+    console.error(e);
+    setError("Couldn’t load 2025.json — confirm the file exists in the repo root and is valid JSON.");
   }
 }
 
-// Password Protection
+// Password
 function checkPassword() {
   const inputEl = document.getElementById("password-input");
   const errorMessage = document.getElementById("error-message");
@@ -126,10 +171,26 @@ function checkPassword() {
   if (input === PASSWORD) {
     const pw = document.getElementById("password-screen");
     const content = document.getElementById("content");
-    if (pw) pw.style.display = "none";
+
+    if (pw) pw.classList.add("hidden");
     if (content) content.classList.remove("hidden");
+
     initYearInReview();
   } else {
     if (errorMessage) errorMessage.textContent = "Incorrect password. Try again!";
   }
 }
+
+// Wire password button + Enter key reliably
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("password-btn");
+  const input = document.getElementById("password-input");
+
+  if (btn) btn.addEventListener("click", checkPassword);
+
+  if (input) {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") checkPassword();
+    });
+  }
+});
